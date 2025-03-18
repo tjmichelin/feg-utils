@@ -17,12 +17,12 @@ LATEST_RELEASE_URL=https://github.com/arduino/arduino-ide/releases/latest
 FINAL_URL=$(curl -Ls -o /dev/null -w '%{url_effective}' "$LATEST_RELEASE_URL")
 VERSION=$(echo "$FINAL_URL" | awk -F'/' '{print $NF}')
 
-DOWNLOAD_URL="https://github.com/arduino/arduino-ide/releases/download/$VERSION/arduino-ide_$VERSION_Linux_64bit.zip"
+DOWNLOAD_URL="https://github.com/arduino/arduino-ide/releases/download/$VERSION/arduino-ide_${VERSION}_Linux_64bit.zip"
 
 cd $HOME/Downloads
 wget $DOWNLOAD_URL
 mkdir arduino
-unzip arduino-ide_$VERSION_Linux_64bit.zip -d arduino/
+unzip arduino-ide_${VERSION}_Linux_64bit.zip -d arduino/
 
 mv arduino/ /opt/
 

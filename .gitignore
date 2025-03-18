@@ -1,6 +1,6 @@
 .DS_Store
 .vscode/
 .git/
-.bkp
-.bak
-.swp
+*.bkp
+*.bak
+*.swp

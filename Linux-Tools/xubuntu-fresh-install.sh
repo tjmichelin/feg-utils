@@ -23,7 +23,7 @@ VERSION=$(echo "$FINAL_URL" | awk -F'/' '{print $NF}')
 DOWNLOAD_URL="https://github.com/arduino/arduino-ide/releases/download/${VERSION}/arduino-ide_${VERSION}_Linux_64bit.zip"
 
 if [ -n "$SUDO_USER" ]; then
-	HOME="/Users/${SUDO_USER}"
+	HOME="/home/${SUDO_USER}"
 else
 	HOME=$HOME
 fi
@@ -31,7 +31,7 @@ echo "Home is set to: ${HOME}"
 
 cd ${HOME}/Downloads
 wget $DOWNLOAD_URL
-mkdir arduino
+mkdir ./arduino
 unzip arduino-ide_${VERSION}_Linux_64bit.zip -d arduino/
 rm arduino-ide_${VERSION}_Linux_64bit.zip
 
@@ -40,6 +40,7 @@ mv arduino/ /opt/
 chown -R root:root /opt/arduino
 chmod 4755 /opt/arduino/chrome-sandbox
 
+# Configuration to allow Arduino IDE access to the serial port
 RULE_FILE=/etc/udev/rules.d/99-arduino.rules
 touch $RULE_FILE
 echo "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"2341\", GROUP=\"plugdev\", MODE=\"0666\"" >> $RULE_FILE
@@ -52,4 +53,20 @@ else
   echo "Library json file not found."
 fi
 
+# Create menu entry
+DESKTOP_FILE=/usr/share/applications/arduino-ide.desktop
+touch $DESKTOP_FILE
+cat <<EOL >> "$DESKTOP_FILE"
+[Desktop Entry]
+Version=$VERSION
+Name=Arduino
+Comment=Arduino IDE
+Exec=/opt/arduino/arduino-ide
+Icon=/opt/arduino/resources/app/resources/icons/512x512.png
+Terminal=false
+Type=Application
+Categories=Development;IDE;
+EOL
+
+echo "Process finished."
 echo "Remember to reboot system for changes to take effect"

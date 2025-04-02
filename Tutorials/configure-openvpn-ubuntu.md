@@ -22,7 +22,7 @@ sudo apt install openvpn network-manager-openvpn network-manager-openvpn-gnome
 
 You'll need the `.ovpn` configuration file from your VPN provider, which contains the necessary
 settings and certificates to establish the connection. You can get UNESP's `.ovpn` file at
-[https://www2.unesp.br/Home/vpn-unesp/openvpn/unesp.ovpn][https://www2.unesp.br/Home/vpn-unesp/openvpn/unesp.ovpn].
+[https://www2.unesp.br/Home/vpn-unesp/openvpn/unesp.ovpn](https://www2.unesp.br/Home/vpn-unesp/openvpn/unesp.ovpn).
 Right click this link and select `Save Link As...`. Then save its content to a known location on
 your computer.
 
@@ -58,9 +58,9 @@ your computer.
 
 ## Step 5: Verify the VPN Connection
 
-To ensure your VPN connection is active and functioning correctly:
+To ensure your VPN connection is active and functioning correctly, try accessing UNESP's Intranet.
+If you can normally get access to this system, your configuration is correct. Otherwise, there might
+be some configuration issue. Double-check your VPN settings or check if your access to the vpn is
+allowed by the institution.
 
-1. Visit an IP-checking website (e.g., `https://whatismyipaddress.com/`) to confirm your public IP address reflects the VPN server's location.
-2. If you encounter any issues, double-check your VPN settings or consult your VPN provider's support resources.
-
-By following these steps, you should be able to connect to an OpenVPN server using Ubuntu 24.04's Network Manager.
+By following these steps, you should be able to connect to UNESP's OpenVPN server using Ubuntu 24.04's Network Manager.

@@ -1,7 +1,7 @@
 #!/bin/bash
-# Script para instalação de ferramentas comuns após instalação de um novo sistema.
+# Script para instalação de ferramentas comuns após instalação de um novo sistema (fresh install).
 # Específico para computadores com arquitetura x86_64.
-# Desenvolvido para ser utilizado em sistemas Linux baseados em Debian.
+# Desenvolvido para ser utilizado em sistemas Linux Xubuntu.
 
 # Remove unused programs
 apt purge -y thunderbird gnome-sudoku gnome-mines sgt-puzzles sgt-launcher hexchat mousepad atril
@@ -44,14 +44,6 @@ chmod 4755 /opt/arduino/chrome-sandbox
 RULE_FILE=/etc/udev/rules.d/99-arduino.rules
 touch $RULE_FILE
 echo "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"2341\", GROUP=\"plugdev\", MODE=\"0666\"" >> $RULE_FILE
-
-PACKAGE_FILE=${HOME}/.arduino15/package_index.json
-
-if [ -e "${PACKAGE_FILE}" ]; then
-  cp ${PACKAGE_FILE} ${HOME}/.arduino15/library_index.json
-else
-  echo "Library json file not found."
-fi
 
 # Create menu entry
 DESKTOP_FILE=/usr/share/applications/arduino-ide.desktop
